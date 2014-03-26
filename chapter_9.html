@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset='UTF-8' />
+    <title>Spoiler Alert!</title>
+    <script src='modernizr-latest.js' ></script>
+    <style>
+      body { background: black; color: white; }
+    </style>
+</head>
+<body>
+  <form action='/info.html' name='userinfo' method='get'>
+    <p>Please give us your information, so that we can send you spam.</p>
+    <p>Name: <input type='text' name='name'/></p>
+    <p>Email: <input type='text' name='email'/></p>
+    <p>Sex: <select name='sex'>
+      <option value=''>Won't say</option>
+      <option value=''>Male</option>
+      <option value=''>Female</option>
+    </select></p>
+    <p>
+      <input type='button' name='send' value='Send!' />
+    </p>
+  </form>
+  <script>
+    (function() {
+     var spamForm = document.forms.userinfo;
+
+     function validInfo(form) {
+      return form.elements.name.value != "" &&
+        /^.+@.+\.\w{2,4}$/.test(form.elements.email.value);
+     }
+
+     spamForm.elements.send.onclick = function() {
+      if (validInfo(spamForm))
+        console.log("submitted");
+      else
+        console.log("Give us a name and a valid email address!");
+     };
+    })();
+  </script>
+</body>
+</html>
